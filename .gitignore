@@ -1,2 +1,8 @@
-.vscode
-.venv
+#folders
+__pycache__/
+.vscode/
+.venv/
+venv/
+
+#files
+.env
