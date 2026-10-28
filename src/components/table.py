@@ -8,17 +8,17 @@ class Table(ctk.CTkFrame):
         self.columns = columns
         self.table = []
 
-        self.controls_frame = ctk.CTkFrame(self)
-        self.controls_frame.pack(side="right", anchor="n")
+        self.controls_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.controls_frame.pack(padx=10, side="right", anchor="n")
 
         self.active = ctk.CTkCheckBox(self.controls_frame, text="Active")
         self.active.pack()
         self.active.select()
 
-        self.button_add = ctk.CTkButton(self.controls_frame, height=10, width=10, text="Add row", command=self.add_row)
+        self.button_add = ctk.CTkButton(self.controls_frame, height=10, width=20, fg_color="green", hover_color="darkgreen", text="Add row", command=self.add_row)
         self.button_add.pack()
 
-        self.button_remove = ctk.CTkButton(self.controls_frame, height=10, width=20, text="Remove Row", command=self.remove_row)
+        self.button_remove = ctk.CTkButton(self.controls_frame, height=10, width=20, fg_color="red", hover_color="crimson", text="Remove Row", command=self.remove_row)
         self.button_remove.pack()
 
         self.rows_frame = ctk.CTkFrame(self)
@@ -52,11 +52,18 @@ class Table(ctk.CTkFrame):
     def remove_row(self):
         index = len(self.table) - 1
 
-        if index >= 0:
+        if index >= 1:
             for col in range(self.columns):
                 self.table[index][col].destroy()
 
-        self.table.pop(index)
+            self.table.pop(index)
 
     def get_data(self):
-        pass
+        data = []
+        
+        if self.active.get() == 1:
+            for row in self.table:
+                widget_data = [widget.get() for widget in row]
+                data.append(widget_data)
+
+        return {"data": data}
