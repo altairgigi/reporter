@@ -37,7 +37,7 @@ class PopFieldGroup(ctk.CTkFrame):
     def get_data(self):
         population_data = [
             {"entry": entry_a.get(), "data": entry_b.get()}
-            for entry_a, entry_b in self.populatinìon_entries
+            for entry_a, entry_b in self.population_entries
         ]
 
         return {"population": population_data}

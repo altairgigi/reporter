@@ -4,7 +4,7 @@ from src.components.textarea import TextArea
 from src.components.table import Table
 from src.components.popfieldgroup import PopFieldGroup
 from src.components.pollfieldgroup import PollFieldGroup
-from src.generator import Generator
+from src.formatter import format
 import src.config as config
 
 class Frame(ctk.CTkScrollableFrame):
@@ -14,11 +14,11 @@ class Frame(ctk.CTkScrollableFrame):
         self.heading = Heading(self)
         self.heading.pack(pady=10)
 
-        self.population_data = PopFieldGroup(self, "Population Data")
-        self.population_data.pack(pady=10)
+        self.population_section = PopFieldGroup(self, "Population Data")
+        self.population_section.pack(pady=10)
 
-        self.regional_updates = TextArea(self, "Regional Updates")
-        self.regional_updates.pack(pady=10)
+        self.officers_updates = TextArea(self, "Regional Officers Updates")
+        self.officers_updates.pack(pady=10)
 
         self.moderation_updates = TextArea(self, "Moderation Updates")
         self.moderation_updates.pack(pady=10)
@@ -29,8 +29,8 @@ class Frame(ctk.CTkScrollableFrame):
         self.commission_updates = TextArea(self, "Commission Updates")
         self.commission_updates.pack(pady=10)
 
-        self.wa_table = Table(self, True, config.A_TABLE_COLUMNS)
-        self.wa_table.pack(pady=10)
+        self.ga_table = Table(self, True, config.A_TABLE_COLUMNS)
+        self.ga_table.pack(pady=10)
 
         self.sc_table = Table(self, True, config.A_TABLE_COLUMNS)
         self.sc_table.pack(pady=10)
@@ -53,23 +53,33 @@ class Frame(ctk.CTkScrollableFrame):
     def generate(self):
         data = {
             "heading": self.heading.get_data(),
-            "population": self.population_data.get_data(),
-            "regional": self.regional_updates.get_data(),
+            "population": self.population_section.get_data(),
+            "officers": self.officers_updates.get_data(),
             "moderation": self.moderation_updates.get_data(),
             "cabinet": self.cabinet_updates.get_data(),
             "commission": self.commission_updates.get_data(),
-            "wa": self.wa_table.get_data(),
+            "ga": self.ga_table.get_data(),
             "sc": self.sc_table.get_data(),
             "authorships": self.authorship_table.get_data(),
             "poll": self.poll_results.get_data()
         }
 
-        return Generator.format(data)
+        return format(data)
     
     def handle_save(self):
         bbcode = self.generate()
-        print("Save successful")
+
+        filepath = ctk.filedialog.asksaveasfilename(
+            defaultextension=".txt",
+            filetypes=[("Text Files", "*.txt"), ("All Fils","*.*")],
+            title="Save BBCode Report"
+        )
+
+        if filepath:
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(bbcode)
 
     def handle_copy(self):
         bbcode = self.generate()
-        print("Copy successful")
+        self.clipboard_clear()
+        self.clipboard_append(bbcode)
