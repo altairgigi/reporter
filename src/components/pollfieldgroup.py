@@ -21,27 +21,27 @@ class PollFieldGroup(ctk.CTkFrame):
 
         self.entry1A = ctk.CTkEntry(self.entry_frame, placeholder_text="Officer")
         self.entry1A.grid(row=0, column=0)
-        self.entry1B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote")
+        self.entry1B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote (es. 8.0)")
         self.entry1B.grid(row=0, column=1)
         self.entry2A = ctk.CTkEntry(self.entry_frame, placeholder_text="Officer")
         self.entry2A.grid(row=1, column=0)
-        self.entry2B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote")
+        self.entry2B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote (es. 8.0)")
         self.entry2B.grid(row=1, column=1)
         self.entry3A = ctk.CTkEntry(self.entry_frame, placeholder_text="Officer")
         self.entry3A.grid(row=2, column=0)
-        self.entry3B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote")
+        self.entry3B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote (es. 8.0)")
         self.entry3B.grid(row=2, column=1)
         self.entry4A = ctk.CTkEntry(self.entry_frame, placeholder_text="Officer")
         self.entry4A.grid(row=3, column=0)
-        self.entry4B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote")
+        self.entry4B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote (es. 8.0)")
         self.entry4B.grid(row=3, column=1)
         self.entry5A = ctk.CTkEntry(self.entry_frame, placeholder_text="Officer")
         self.entry5A.grid(row=4, column=0)
-        self.entry5B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote")
+        self.entry5B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote (es. 8.0)")
         self.entry5B.grid(row=4, column=1)
         self.entry6A = ctk.CTkEntry(self.entry_frame, placeholder_text="Officer")
         self.entry6A.grid(row=5, column=0)
-        self.entry6B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote")
+        self.entry6B = ctk.CTkEntry(self.entry_frame, placeholder_text="Vote (es. 8.0)")
         self.entry6B.grid(row=5, column=1)
 
         self.officer_entries = [
@@ -60,10 +60,10 @@ class PollFieldGroup(ctk.CTkFrame):
         self.image_url.pack()
 
     def get_data(self):
-        vote_data = [
-            self.valid_votes.get(),
-            self.total_votes.get()
-        ]
+        vote_data = {
+            "valid_votes": self.valid_votes.get(),
+            "total_votes": self.total_votes.get()
+        }
 
         officers_data = [
             {"officer": entry_a.get(), "vote": entry_b.get()}
@@ -73,7 +73,7 @@ class PollFieldGroup(ctk.CTkFrame):
         image_url = self.image_url.get()
 
         return {
-            "vote": vote_data,
+            "votes": vote_data,
             "officers": officers_data,
-            "image": image_url
+            "image_url": image_url
         }

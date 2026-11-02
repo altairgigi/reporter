@@ -5,49 +5,60 @@ FOOTER = "[background-block=#1D2951][centre][img]https://raw.githubusercontent.c
 REPORT_HEADING = """[center][color=#1D2951][size=150]European State of the Region Report[/size][/color]
                     [color=#1D2951][size=120]{month} {year}[/size][/color][/center]"""
 
-POPULATION_BOX = """[box][u]Regional Population Data[/u]
-                    Total Population: {total_pop} ([color={pop_color}]{total_pop_change}[/color])
-                    WA Population: {wa_pop} ([color={wa_color}]{wa_pop_change}[/color])
-                    Delegate Endorsements: {endorsements} ([color={endo_color}]{endorse_change}[/color])
-                    Yield Rate: {yield_rate} ([color={yeld_color}]{yield_change}[/color])"""
+GREEN = "[color=green]+{num}[/color]"
 
-OFFICERS_UPDATES = """[u]Regional Officers Update[/u]
-                      {text}"""
+RED = "[color=red]-{num}[/color]"
 
-MODERATION_UPDATES = """[u]Regional Officers Update[/u]
-                      {text}"""
+POPULATION_SECTION = """[box][u]Regional Population Data[/u]
+                    Total Population: {pop} ({pop_change})
+                    WA Population: {wa} ({wa_change})
+                    Delegate Endorsements: {endo} ({endo_change})
+                    Yield Rate: {yield_rate} ({yield_change})\n"""
 
-CABINET_UPDATES = """[u]Regional Officers Update[/u]
-                      {text}"""
+OFFICERS_UPDATES = """[u]Regional Officers Updates[/u]
+                      {text}\n"""
 
-COMMISSION_UPDATES = """[u]Regional Officers Update[/u]
-                      {text}"""
+MODERATION_UPDATES = """[u]Moderation Updates[/u]
+                      {text}\n"""
 
-A_TABLE_TEMPLATE = "[tr][td]{resolution}[/td][td][nation]{author}[/nation][/td][td]{vote}[/td][/tr]"
+CABINET_UPDATES = """[u]Cabinet Updates[/u]
+                      {text}\n"""
 
-B_TABLE_TEMPLATE = "[tr][td]{resolution}[/td][td][nation]{author}[/nation][/td][/tr]"
-#TO DO! Fix this formatting
-GA_TABLE = """[u]World Assembly Activity[/u]
-              [i]Delegate GA Votes:[/i]
+COMMISSION_UPDATES = """[u]Commission Updates[/u]
+                      {text}\n"""
+
+A_TABLE_ROW = "[tr][td]{resolution}[/td][td][nation]{author}[/nation][/td][td]{vote}[/td][/tr]"
+
+B_TABLE_ROW = "[tr][td]{resolution}[/td][td][nation]{author}[/nation][/td][/tr]"
+
+FOR = "[color=blue]FOR[/color]"
+
+AGAINST = "[color=red]AGAINST[/color]"
+
+WA_SECTION_HEADING = "[u]World Assembly Activity[/u]\n"
+
+GA_TABLE = """[i]Delegate GA Votes:[/i]
               [table]
               [tr][td]Resolution[/td][td]Author[/td][td]Delegate Vote[/td][/tr]
-              {ga_rows}
-              [/table]"""
+              {rows}
+              [/table]\n"""
 
 SC_TABLE = """[i]Delegate SC Votes:[/i]
                 [table]
                 [tr][td]Resolution[/td][td]Author[/td][td]Delegate Vote[/td][/tr]
-                {sc_rows}
-                [/table]""" 
+                {rows}
+                [/table]\n""" 
 
 AUTHORSHIPS_TABLE = """[i]European Autorships:[/i]
                        [table]
                        [tr][td]Resolution[/td][td]Author[/td][/tr]
-                       {authorships_rows}
-                       [/table]"""
+                       {rows}
+                       [/table]\n"""
+
+RESULT = "[nation]{office}[/nation]: {vote}\n"
 
 APPROVAL_SECTION = """[u]European Government Approval Rates[/u]
                       [i]Valid votes out of total votes: {valid_votes}/{total_votes}[/i]
                       {ratings_list}
-                      [img]{chart_url}[/img]
-                      [align=right][size=60][i]Updated on {update_date}. Census record from {census_source}.[/i][/size][/align][/box]"""
+                      [img]{image_url}[/img]
+                      [align=right][size=60][i]Updated on {update_date}. Census record from ifly6.ip.org.[/i][/size][/align][/box]\n"""

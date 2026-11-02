@@ -60,10 +60,13 @@ class Table(ctk.CTkFrame):
 
     def get_data(self):
         data = []
+        active = False
         
         if self.active.get() == 1:
+            active = True
+
             for row in self.table:
                 widget_data = [widget.get() for widget in row]
                 data.append(widget_data)
 
-        return {"data": data}
+        return {"active": active, "table": data}

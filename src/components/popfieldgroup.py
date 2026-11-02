@@ -22,9 +22,9 @@ class PopFieldGroup(ctk.CTkFrame):
         self.entry3A.grid(row=2, column=0)
         self.entry3B = ctk.CTkEntry(self.entry_frame, placeholder_text="Current Delegate Endorsement")
         self.entry3B.grid(row=2, column=1)
-        self.entry4A = ctk.CTkEntry(self.entry_frame, placeholder_text="Past Yeld Rate")
+        self.entry4A = ctk.CTkEntry(self.entry_frame, placeholder_text="Past Yield Rate (es. 0.0756)")
         self.entry4A.grid(row=3, column=0)
-        self.entry4B = ctk.CTkEntry(self.entry_frame, placeholder_text="Current Yeld Rate")
+        self.entry4B = ctk.CTkEntry(self.entry_frame, placeholder_text="Current Yield Rate (es. 0.0756)")
         self.entry4B.grid(row=3, column=1)
 
         self.population_entries = [
@@ -35,9 +35,13 @@ class PopFieldGroup(ctk.CTkFrame):
         ]
 
     def get_data(self):
-        population_data = [
-            {"entry": entry_a.get(), "data": entry_b.get()}
-            for entry_a, entry_b in self.population_entries
-        ]
-
-        return {"population": population_data}
+        return {
+            "past_pop": self.entry1A.get(),
+            "current_pop": self.entry1B.get(),
+            "past_wa": self.entry2A.get(),
+            "current_wa": self.entry2B.get(),
+            "past_endo": self.entry3A.get(),
+            "current_endo": self.entry3B.get(),
+            "past_yield": self.entry4A.get(),
+            "current_yield": self.entry4B.get()
+        }

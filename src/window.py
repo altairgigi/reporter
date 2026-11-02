@@ -1,3 +1,5 @@
+import pathlib
+import tkinter as tk
 import customtkinter as ctk
 from src.components.frame import Frame
 

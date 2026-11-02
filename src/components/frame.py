@@ -64,6 +64,8 @@ class Frame(ctk.CTkScrollableFrame):
             "poll": self.poll_results.get_data()
         }
 
+        print(data)
+
         return format(data)
     
     def handle_save(self):
